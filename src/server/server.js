@@ -10,7 +10,6 @@ import { authenticationRoute } from './authenticate';
 
 import { connectDB } from './connect-db';
 import { addNewTask, updateTask } from './communicate-db';
-
 let port = process.env.PORT || 7777;
 let app = express();
 
