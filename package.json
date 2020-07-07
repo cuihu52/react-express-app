@@ -4,9 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack",
-    "dev": "webpack-dev-server --open"
+    "build": "webpack -p",
+    "deploy": "npm run build && git commit -a -m deployment && git push heroku master",
+    "dev": "webpack-dev-server --open",
+    "server": "cross-env NODE_ENV=production babel-node src/server",
+    "server-dev": "nodemon src/server --exec babel-node src/server",
+    "start-dev": "concurrently \"npm run server-dev\" \"npm run dev\"",
+    "server-spec": "babel-node src/server/server.spec",
+    "start": "npm run server"
   },
   "author": "",
   "license": "ISC",
@@ -17,14 +22,23 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
     "babel-loader": "^8.0.2",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "mongodb": "^3.1.10",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "history": "^4.7.2",
     "react": "^16.4.2",
     "react-dom": "^16.5.0",
     "react-redux": "^5.0.7",
-    "redux": "^4.0.0"
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-saga": "^0.16.2",
+    "uuid": "^8.2.0"
   }
 }
